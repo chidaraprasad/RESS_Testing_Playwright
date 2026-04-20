@@ -26,11 +26,26 @@ test('RESS_Test1', async () => {
   await page.getByRole('textbox', { name: 'Passcode *' }).fill('918763');
   await page.pause();
   await page.getByRole('button', { name: 'Confirm' }).click();
+
+// Navigating to Code Tables to create a new Auction in RESS Unicorn
   await page.getByRole('button').first().click();
   await page.getByText('System Administration').click();
   await page.getByRole('link', { name: 'Code Tables' }).click();
-  await page.locator('tr:nth-child(7) > td:nth-child(4) > div > .usy-damas-core-bricks-list-context-menu-close > .usy-damas-core-bricks-list-context-menu-button').click();
+  
+// Filtering the Code Tables to get the Auctions table
 
+  await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
+  await page.getByText('- Select -').click();
+  await page.getByRole('combobox').fill('RESS');
+  await page.getByRole('combobox').press('Enter');
+  await page.getByRole('button', { name: 'Apply' }).click();
+  await page.locator('th:nth-child(2) > div > .uu5-common-div > .usy-damas-core-bricks-list-table-filter-section-wrapper > .uu5-bricks-button').click();
+  await page.getByRole('textbox', { name: 'Name contains specific text:' }).fill('RESS Auctions');
+  await page.getByRole('button', { name: 'Apply' }).click();
+  await page.getByRole('button', { name: 'Apply' }).click();
+
+  
+  await page.locator('.usy-damas-core-bricks-list-context-menu-button').click();
   await page.getByRole('button', { name: 'Display' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Add new' }).click();
@@ -105,9 +120,9 @@ test('RESS_Test1', async () => {
   await page1.getByRole('button', { name: 'Save' }).click();
 
   await page1.screenshot({ path: 'AuctionDate.png' });
-await page1.getByRole('textbox', { name: 'Auction Description *' }).fill(AuctionName);
+  await page1.getByRole('textbox', { name: 'Auction Description *' }).fill(AuctionName);
   await page1.getByRole('button', { name: 'Save' }).click();
-await page1.pause();
+  await page1.pause();
   await page1.getByRole('cell', { name: 'Code table item created' }).click();
   await page1.getByText('MessageStatusCode table item created successfully.OK').click();
   await page1.getByRole('button', { name: 'OK' }).click();
