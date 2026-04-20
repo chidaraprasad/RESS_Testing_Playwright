@@ -8,7 +8,7 @@ const RESS_Unicorn_Internal_USERNAME = "rajendra.chidera@eirgrid.com";
 const RESS_Unicorn_Internal_PASSWORD = "Smartops@903";
 const RESS_Unicorn_External_USERNAME = "r.chidara@accenture.com";
 const RESS_Unicorn_External_PASSWORD = "Smartops@903";
-const RESS_Auction_Created = "Auction_1776552395423";
+const RESS_Auction_Created = "Auction_1776673718169";
 
 test('RESS_Test1', async () => { 
 
