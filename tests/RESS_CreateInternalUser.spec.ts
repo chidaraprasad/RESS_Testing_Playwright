@@ -34,23 +34,25 @@ test('RESS_Test1', async () => {
   assert(await page.getByRole('link', { name: 'Users' }).isVisible(), 'Users link is not visible');
 
   await page.getByRole('link', { name: 'Users' }).click();
+  await page.waitForLoadState('networkidle');
+  await page.pause();
   assert(await page.getByRole('button', { name: 'Create New User' }).isVisible(), 'Create New User button is not visible');
 
   await page.getByRole('button', { name: 'Create New User' }).click();
   await page.getByText('- Select some item -').click();
-  await page.getByText('RESS External User Roles').click();
+  await page.getByText('RESS Internal User Roles').click();
  
   await page.getByRole('textbox', { name: 'First Name *' }).fill('TestFirstName');
   await page.getByRole('textbox', { name: 'Last Name *' }).fill('TestLastName'); 
   await page.getByRole('textbox', { name: 'Phone *' }).fill('+421999888777');
   await page.getByRole('textbox', { name: 'E-mail *' }).fill('tester@tester.com');
   await page.getByText('- Select some item -').click();
-  await page.getByText('RESS Auction Platform Admin User', { exact: true }).click();
-  await page.getByText('- Select some item -').click();
-  await page.getByText('Select All').click();
+  await page.getByText('RESS Ops User', { exact: true }).click();
   await page.getByRole('textbox', { name: 'New Password *', exact: true }).fill(RESS_Default_Password);
   await page.getByRole('textbox', { name: 'Confirm New password *' }).fill(RESS_Default_Password);
   await page.getByRole('button', { name: 'Create' }).click();
+  await page.waitForLoadState('networkidle');
+  await page.pause();
   assert(await page.getByRole('cell', { name: 'User created successfully.' }).isVisible(), 'User created successfully message is not visible');
   await page.getByRole('button', { name: 'OK' }).click();
 
@@ -91,6 +93,6 @@ test('RESS_Test1', async () => {
   await page.getByRole('button', { name: 'Yes' }).click();
   await page.getByRole('cell', { name: 'User deleted' }).click();
   await page.getByRole('button', { name: 'OK' }).click();
-  await page.getByRole('button', { name: ' Rajendra Prasad Chidara ' }).click();
+  await page.locator("//span[@class='uu5-bricks-icon mdi mdi-chevron-down']").click();
   await page.getByText('Logout').click();
 });

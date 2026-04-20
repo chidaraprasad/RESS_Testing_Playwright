@@ -44,7 +44,7 @@ test('RESS_Test1', async () => {
   await page.getByRole('button', { name: 'Apply' }).click();
   await page.getByRole('button', { name: 'Apply' }).click();
 
-  
+
   await page.locator('.usy-damas-core-bricks-list-context-menu-button').click();
   await page.getByRole('button', { name: 'Display' }).click();
   const page1Promise = page.waitForEvent('popup');
@@ -136,7 +136,7 @@ test('RESS_Test1', async () => {
   expect(cellValue).toEqual(AuctionName);
   await page1.screenshot({ path: 'TableData.png' });
   await page1.close();
-  await page.getByRole('button', { name: ' Rajendra Prasad Chidara ' }).click();
+await page.locator("//span[@class='uu5-bricks-icon mdi mdi-chevron-down']").click();
   await page.getByText('Logout').click();
   await page.close
 });
