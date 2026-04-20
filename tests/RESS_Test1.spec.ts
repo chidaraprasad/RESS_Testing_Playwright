@@ -124,37 +124,4 @@ await page1.pause();
   await page.getByRole('button', { name: ' Rajendra Prasad Chidara ' }).click();
   await page.getByText('Logout').click();
   await page.close
-
-    await page.goto(RESS_Unicorn_URL);
-  
-  await page.waitForLoadState('networkidle');
-
-  await page.getByRole('textbox', { name: 'Username *' }).fill(RESS_Unicorn_External_USERNAME);
-  await page.getByRole('textbox', { name: 'Password *' }).fill(RESS_Unicorn_External_PASSWORD);
-  await page.getByRole('button', { name: 'Login' }).click();
-
-  await page.getByRole('textbox', { name: 'Passcode *' }).fill('918763');
-  await page.pause();
-  await page.getByRole('button', { name: 'Confirm' }).click();
-
-  await page.getByRole('button').first().click();
-
-  await page.getByText('RESS Module').click();
-
-  await page.getByRole('link', { name: 'Application List' }).click();
-
-  await page.getByRole('button', { name: 'Show Data' }).click();
-
-  await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
-
-  await page.getByRole('textbox', { name: 'Application Reference' }).fill(AuctionName);
-  await page.getByRole('button', { name: 'Apply' }).click();
-  
-  await page.getByRole('button', { name: 'Create New' }).click();
-  await page.getByText('- Select some item -').click();
-  await page.getByRole('combobox').fill(AuctionName);
-  await page.getByRole('combobox').press('Enter');
-
-  await page.pause
-
 });

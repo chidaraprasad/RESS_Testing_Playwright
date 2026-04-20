@@ -8,6 +8,7 @@ const RESS_Unicorn_Internal_USERNAME = "rajendra.chidera@eirgrid.com";
 const RESS_Unicorn_Internal_PASSWORD = "Smartops@903";
 const RESS_Unicorn_External_USERNAME = "r.chidara@accenture.com";
 const RESS_Unicorn_External_PASSWORD = "Smartops@903";
+const RESS_Auction_Created = "Auction_1776552395423";
 
 test('RESS_Test1', async () => { 
 
@@ -38,14 +39,14 @@ test('RESS_Test1', async () => {
 
   await page.waitForLoadState('networkidle');
 
-  // await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
+  while (!(await page.getByRole('button', { name: 'Create New' }).isVisible())) {
+    await page.getByRole('button', { name: 'Show Data' }).click();
+    await page.waitForTimeout(15000);
+  }
 
-  // await page.getByRole('textbox', { name: 'Application Reference' }).fill('Auction_1776434645027');
-  // await page.getByRole('button', { name: 'Apply' }).click();
-  
   await page.getByRole('button', { name: 'Create New' }).click();
   await page.getByText('- Select some item -').click();
-  await page.getByRole('combobox').fill('Auction_1776419881207');
+  await page.getByRole('combobox').fill(RESS_Auction_Created);
   await page.getByRole('combobox').press('Enter');
 
   await page.pause();
@@ -105,7 +106,6 @@ await page.pause();
   await page.getByRole('textbox', { name: 'Maximum Export Capacity of' }).fill('22');
   await page.getByRole('textbox', { name: 'ITM Site Easting: *' }).fill('100');
   await page.getByRole('textbox', { name: 'ITM Site Northing: *' }).fill('200');
-  await page.getByText('- Select some item -').click();
   await page.locator('#react-select-18--value').getByRole('combobox').fill('Antrim');
   await page.locator('#react-select-18--value').getByRole('combobox').press('Enter');
  
@@ -114,34 +114,50 @@ await page.pause();
   // Pre-filling the application form with Compliance Details
 
   await page.getByRole('button', { name: 'Compliance' }).click();
-  await page.locator('[id="226a408fb3e9c45b3af802a766c9b75e-input"]').click();
-  await page.locator('[id="226a408fb3e9c45b3af802a766c9b75e-input"]').setInputFiles('TestDocument.pdf');
-  await page.getByText('Confirmation of Compliance with New Project Requirements').click();
-  await page.locator('[id="79660150d48c44f008375651f5cc1507-inner"]').click();
-  await page.locator('[id="001927a1fde894605a815921ab49398d-inner"]').click();
-  await page.locator('#afc60507604e740faa6fe3ab3f3fbde9-inner').click();
-  await page.locator('#f51cb783bf5804e20963548f15835a4d-input').click();
-  await page.locator('#f51cb783bf5804e20963548f15835a4d-input').setInputFiles('TestDocument.pdf');
-  await page.locator('[id="7746294d2830a491cb0d7997249437c7-inner"]').click();
-  await page.locator('#bf081b31e32e24372a0b41fe453317e1-inner').click();
-  await page.locator('[id="21626c554ed9343e9b7233e4b4f7226f-input"]').click();
-  await page.locator('[id="21626c554ed9343e9b7233e4b4f7226f-input"]').setInputFiles('TestDocument.pdf');
-  await page.getByRole('textbox', { name: 'Planning Reference Number *' }).click();
+
+  await page.locator('//div[@name="confirmPlanningConsent"]//button').click();
+  await page.locator('//div[@name="confirmGridContractedProject"]//button').click();
+  await page.locator('//div[@name="confirmComplFinanceabilityRequirement"]//button').click();
+  await page.locator('//div[@name="confirmComplNewProjectRequirement"]//button').click();
+  await page.locator('//div[@name="confirmApplicantIndependence"]//button').click();
+  await page.locator('//div[@name="confirmCompliance"]//button').click();
+  await page.locator('//div[@name="confirmAckInformation"]//button').click();
+  await page.locator('//div[@name="confirmApprovalOnBehalf"]//button').click();
+  await page.locator('//div[@name="confirmBidBond"]//button').click();
+  await page.locator('//div[@name="confirmSiteControl"]//button').click();
+
+  await page.setInputFiles('//div[@name="docRessDirectorDeclaration"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+  await page.setInputFiles('//div[@name="docCompliance"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+  await page.setInputFiles('//div[@name="docEvidenceRAU1"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+  await page.setInputFiles('//div[@name="docCompliance"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+await page.setInputFiles('//div[@name="docBidBond"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+  await page.setInputFiles('//div[@name="docBidBondReturn"]//input', 'C:\\Users\\r.chidara\\playwright-test\\TestDocument.pdf');
+  
   await page.getByRole('textbox', { name: 'Planning Reference Number *' }).fill('Test12553');
-  await page.locator('[id="18649e8b281cb4c5598418dcd38ac354-inner"]').click();
-  await page.locator('[id="50a1a40c86c52495eb6faebf3e37cef2-input"]').click();
-  await page.locator('[id="50a1a40c86c52495eb6faebf3e37cef2-input"]').setInputFiles('TestDocument.pdf');
-  await page.locator('[id="6e81285aa59ec440fa77b3066f721e3d-input"]').click();
-  await page.locator('[id="6e81285aa59ec440fa77b3066f721e3d-input"]').setInputFiles('TestDocument.pdf');
-  await page.locator('#e8b50b6418523414d9a4d431f0623ce6-inner').click();
   
   // Pre-filling the application form with Offer Price Details
 
   await page.getByRole('button', { name: 'Offer Price' }).click();
   await page.getByRole('button', { name: 'Submit' }).click();
+  await page.pause();
   await page.getByRole('button', { name: 'Yes' }).click();
   assert(page.getByText('Your application has been').isVisible());
   await page.getByRole('button', { name: 'OK' }).click();
   
+   await page.waitForLoadState('networkidle');
 
+  await page.getByRole('button', { name: 'Show Data' }).click();
+
+  await page.waitForLoadState('networkidle');
+
+  while (!(await page.getByRole('button', { name: 'Create New' }).isVisible())) {
+    await page.getByRole('button', { name: 'Show Data' }).click();
+    await page.waitForTimeout(15000);
+  }
+
+  await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
+  await page.getByRole('textbox', { name: 'Application Reference' }).fill(RESS_Auction_Created);
+  await page.getByRole('button', { name: 'Apply' }).click();
+  await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
+  assert(await page.getByText('April Wind Farm').isVisible());
 });
