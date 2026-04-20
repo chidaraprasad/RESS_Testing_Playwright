@@ -63,6 +63,8 @@ test('RESS_Test1', async () => {
   await page.locator('.usy-damas-core-bricks-list-context-menu-button').click();
   await page.getByRole('button', { name: 'Detail' }).click();
 
+  await page.waitForLoadState('networkidle');
+
   /*
 
   assert(await page.getByRole('textbox', { name: 'First Name' }).inputValue() === 'TestFirstName', 'First Name does not match');
@@ -78,6 +80,7 @@ test('RESS_Test1', async () => {
   await page.getByRole('link', { name: 'Users' }).click();
   
   await page.locator('.uu5-bricks-button.uu5-bricks-button-s').first().click();
+
 
   await page.getByRole('textbox', { name: 'E-mail contains specific text:' }).fill('tester@tester.com');
   await page.getByRole('button', { name: 'Apply' }).click();
