@@ -115,6 +115,7 @@ await page.pause();
 
   await page.getByRole('button', { name: 'Compliance' }).click();
 
+  
   await page.locator('//div[@name="confirmPlanningConsent"]//button').click();
   await page.locator('//div[@name="confirmGridContractedProject"]//button').click();
   await page.locator('//div[@name="confirmComplFinanceabilityRequirement"]//button').click();
