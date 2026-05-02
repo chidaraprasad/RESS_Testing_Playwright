@@ -8,7 +8,9 @@ const RESS_Unicorn_Internal_USERNAME = "rajendra.chidera@eirgrid.com";
 const RESS_Unicorn_Internal_PASSWORD = "Smartops@903";
 const RESS_Unicorn_External_USERNAME = "r.chidara@accenture.com";
 const RESS_Unicorn_External_PASSWORD = "Smartops@903";
-const RESS_Auction_Created = "Auction_1776679210787";
+const RESS_Auction_Created = "Auction_1777028482360";
+
+
 
 test('RESS_Test1', async () => { 
 
@@ -115,7 +117,7 @@ await page.pause();
 
   await page.getByRole('button', { name: 'Compliance' }).click();
 
-  
+
   await page.locator('//div[@name="confirmPlanningConsent"]//button').click();
   await page.locator('//div[@name="confirmGridContractedProject"]//button').click();
   await page.locator('//div[@name="confirmComplFinanceabilityRequirement"]//button').click();
