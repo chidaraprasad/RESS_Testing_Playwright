@@ -43,12 +43,8 @@ test('test', async ({ page }) => {
   await page.waitForLoadState('networkidle');
   await page.pause();
   //a[@class='uu5-bricks-link']
-
   console.log(await page.locator('table tbody tr:first-child td:first-child').textContent);
-
   await expect(
   page.locator('table tbody tr:first-child td:first-child')
   ).toHaveText(EmailID);
-
-  
 });
